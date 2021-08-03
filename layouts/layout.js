@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Container from '@/components/Container'
 import TagItem from '@/components/TagItem'
-import { NotionRenderer, Equation, Code, CollectionRow } from 'react-notion-x'
+import { NotionRenderer, Equation, Code, CollectionRow, Collection } from 'react-notion-x'
 import BLOG from '@/blog.config'
 import formatDate from '@/lib/formatDate'
 import { useLocale } from '@/lib/locale'
@@ -30,22 +30,22 @@ const Layout = ({
       type="article"
       fullWidth={fullWidth}
     >
-      <article>
+      <article className="overflow-x-hidden">
         <h1 className="font-bold text-3xl text-black dark:text-white">
           {frontMatter.title}
         </h1>
         {frontMatter.type[0] !== 'Page' && (
           <nav className="flex mt-7 items-start text-gray-500 dark:text-gray-400">
             <div className="flex mb-4">
-              <a href={BLOG.socialLink || '#'} className="flex">
+              <a href='#' className="flex">
                 <Image
-                  alt={BLOG.author}
+                  alt={frontMatter.Author}
                   width={24}
                   height={24}
                   src={`https://gravatar.com/avatar/${emailHash}`}
                   className="rounded-full"
                 />
-                <p className="ml-2 md:block">{BLOG.author}</p>
+                <p className="ml-2 md:block">{frontMatter.Author}</p>
               </a>
               <span className="block">&nbsp;/&nbsp;</span>
             </div>
@@ -72,9 +72,11 @@ const Layout = ({
               components={{
                 equation: Equation,
                 code: Code,
-                collectionRow: CollectionRow
+                collectionRow: CollectionRow,
+                collection: Collection,
               }}
               mapPageUrl={mapPageUrl}
+              fullPage={fullWidth}
             />
           </div>
         )}

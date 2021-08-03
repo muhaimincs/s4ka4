@@ -69,3 +69,11 @@ pre[class*='language-'] {
 .notion-collection-row {
   @apply hidden;
 }
+
+.notion-asset-wrapper-full {
+  @apply overflow-hidden;
+}
+
+.notion-asset-wrapper-full img {
+  @apply object-cover !important;
+}
