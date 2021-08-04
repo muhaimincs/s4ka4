@@ -73,7 +73,7 @@ const Layout = ({
                 equation: Equation,
                 code: Code,
                 collectionRow: CollectionRow,
-                collection: Collection,
+                collection: Collection
               }}
               mapPageUrl={mapPageUrl}
               fullPage={fullWidth}
