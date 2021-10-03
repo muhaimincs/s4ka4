@@ -16,7 +16,7 @@
   @apply hidden;
 }
 .notion-h-title {
-  @apply mt-0!important;
+  @apply mt-0 !important;
 }
 .notion-page-link {
   color: inherit;
