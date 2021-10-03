@@ -52,7 +52,7 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
             meta.title
           )}.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fnobelium.vercel.app%2Flogo-for-dark-bg.svg`}
         />
-        {meta.type === 'article' && (
+        {meta.type === 'Post' && (
           <>
             <meta
               property="article:published_time"

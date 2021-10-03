@@ -17,6 +17,7 @@
 }
 .notion-app {
   @apply mt-0 !important;
+  @apply dark:bg-black;
 }
 .notion-page-link {
   color: inherit;

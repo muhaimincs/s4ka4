@@ -21,16 +21,17 @@ const Layout = ({
 }) => {
   const locale = useLocale()
   const router = useRouter()
+  console.log(frontMatter)
   return (
     <Container
       layout="blog"
       title={frontMatter.title}
       description={frontMatter.summary}
-      // date={new Date(frontMatter.publishedAt).toISOString()}
-      type="article"
+      date={new Date(frontMatter.createdTime).toISOString()}
+      type={frontMatter.type[0]}
       fullWidth={fullWidth}
     >
-      <article className={frontMatter.type[0] === 'Page' ? 'absolute top-0 overflow-hidden z-[-100] inset-x-0' : 'overflow-x-hidden'}>
+      <article className="overflow-x-hidden">
         {frontMatter.type[0] !== 'Page' && (
           <>
             <h1 className="font-bold text-3xl text-black dark:text-white">
@@ -82,25 +83,25 @@ const Layout = ({
             />
           </div>
         )}
+        <div className={`flex justify-between font-medium text-gray-500 dark:text-gray-400${frontMatter.type[0] === 'Page' ? ' w-full mx-auto px-4 md:px-24' : ''}`}>
+          <a>
+            <button
+              onClick={() => router.push(BLOG.path || '/')}
+              className="mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100"
+            >
+              ← {locale.POST.BACK}
+            </button>
+          </a>
+          <a>
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100"
+            >
+              ↑ {locale.POST.TOP}
+            </button>
+          </a>
+        </div>
       </article>
-      <div className="flex justify-between font-medium text-gray-500 dark:text-gray-400">
-        <a>
-          <button
-            onClick={() => router.push(BLOG.path || '/')}
-            className="mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100"
-          >
-            ← {locale.POST.BACK}
-          </button>
-        </a>
-        <a>
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="mt-2 cursor-pointer hover:text-black dark:hover:text-gray-100"
-          >
-            ↑ {locale.POST.TOP}
-          </button>
-        </a>
-      </div>
       <Comments frontMatter={frontMatter} />
     </Container>
   )
