@@ -1,10 +1,10 @@
 const BLOG = {
-  title: 'K4',
+  title: 'His Trees',
   author: 'BSR',
   email: 'benz.sohor@pm.me',
-  link: 'https://nobelium.vercel.app',
-  description: 'This gonna be an awesome meditation.',
-  lang: 'en-US', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
+  link: 'https://histre.es',
+  description: 'Your story heard, His Story Revealed',
+  lang: 'ms-MY', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
   appearance: 'auto', // ['light', 'dark', 'auto'],
   font: 'sans-serif', // ['sans-serif', 'serif']
   lightBackground: '#ffffff', // use hex value, don't forget '#' e.g #fffefc
@@ -17,7 +17,7 @@ const BLOG = {
   showArchive: true,
   autoCollapsedNavBar: false, // The automatically collapsed navigation bar
   ogImageGenerateURL: 'https://og-image-craigary.vercel.app', // The link to generate OG image, don't end with a slash
-  socialLink: 'https://twitter.com/craigaryhart',
+  socialLink: '',
   seo: {
     keywords: ['Renungan'],
     googleSiteVerification: '' // Remove the value or replace it with your own google site verification code
