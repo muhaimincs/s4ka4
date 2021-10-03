@@ -31,42 +31,44 @@ const Layout = ({
       fullWidth={fullWidth}
     >
       <article className="overflow-x-hidden">
-        <h1 className="font-bold text-3xl text-black dark:text-white">
-          {frontMatter.title}
-        </h1>
         {frontMatter.type[0] !== 'Page' && (
-          <nav className="flex mt-7 items-start text-gray-500 dark:text-gray-400">
-            <div className="flex mb-4">
-              <a href='#' className="flex">
-                <Image
-                  alt={frontMatter.Author}
-                  width={24}
-                  height={24}
-                  src={`https://gravatar.com/avatar/${emailHash}`}
-                  className="rounded-full"
-                />
-                <p className="ml-2 md:block">{frontMatter.Author}</p>
-              </a>
-              <span className="block">&nbsp;/&nbsp;</span>
-            </div>
-            <div className="mr-2 mb-4 md:ml-0">
-              {formatDate(
-                frontMatter?.date?.start_date || frontMatter.createdTime,
-                BLOG.lang
-              )}
-            </div>
-            {frontMatter.tags && (
-              <div className="flex flex-nowrap max-w-full overflow-x-auto article-tags">
-                {frontMatter.tags.map(tag => (
-                  <TagItem key={tag} tag={tag} />
-                ))}
+          <>
+            <h1 className="font-bold text-3xl text-black dark:text-white">
+              {frontMatter.title}
+            </h1>
+            <nav className="flex mt-7 items-start text-gray-500 dark:text-gray-400">
+              <div className="flex mb-4">
+                <a href='#' className="flex">
+                  <Image
+                    alt={frontMatter.Author}
+                    width={24}
+                    height={24}
+                    src={`https://gravatar.com/avatar/${emailHash}`}
+                    className="rounded-full"
+                  />
+                  <p className="ml-2 md:block">{frontMatter.Author}</p>
+                </a>
+                <span className="block">&nbsp;/&nbsp;</span>
               </div>
-            )}
-          </nav>
+              <div className="mr-2 mb-4 md:ml-0">
+                {formatDate(
+                  frontMatter?.date?.start_date || frontMatter.createdTime,
+                  BLOG.lang
+                )}
+              </div>
+              {frontMatter.tags && (
+                <div className="flex flex-nowrap max-w-full overflow-x-auto article-tags">
+                  {frontMatter.tags.map(tag => (
+                    <TagItem key={tag} tag={tag} />
+                  ))}
+                </div>
+              )}
+            </nav>
+          </>
         )}
         {children}
         {blockMap && (
-          <div className="-mt-4">
+          <div className={frontMatter.type[0] === 'page' ? 'absolute top-0 overflow-hidden z-[-100] inset-x-0' : '-mt-4'}>
             <NotionRenderer
               recordMap={blockMap}
               components={{
