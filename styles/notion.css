@@ -15,7 +15,7 @@
 .notion-header {
   @apply hidden;
 }
-.notion-h-title {
+.notion-app {
   @apply mt-0 !important;
 }
 .notion-page-link {
@@ -64,6 +64,12 @@ pre[class*='language-'] {
 }
 .notion-full-width {
   @apply px-0;
+}
+.notion-page-content {
+  @apply max-w-7xl mx-auto w-full;
+}
+.notion-asset-wrapper-full {
+  @apply w-screen;
 }
 .notion-page {
   @apply w-auto;
