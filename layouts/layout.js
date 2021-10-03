@@ -30,7 +30,7 @@ const Layout = ({
       type="article"
       fullWidth={fullWidth}
     >
-      <article className="overflow-x-hidden">
+      <article className={frontMatter.type[0] === 'Page' ? 'absolute top-0 overflow-hidden z-[-100] inset-x-0' : 'overflow-x-hidden'}>
         {frontMatter.type[0] !== 'Page' && (
           <>
             <h1 className="font-bold text-3xl text-black dark:text-white">
@@ -68,7 +68,7 @@ const Layout = ({
         )}
         {children}
         {blockMap && (
-          <div className={frontMatter.type[0] === 'Page' ? 'absolute top-0 overflow-hidden z-[-100] inset-x-0' : '-mt-4'}>
+          <div className="-mt-4">
             <NotionRenderer
               recordMap={blockMap}
               components={{

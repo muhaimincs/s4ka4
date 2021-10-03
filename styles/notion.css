@@ -66,7 +66,7 @@ pre[class*='language-'] {
   @apply px-0;
 }
 .notion-page-content {
-  @apply max-w-7xl mx-auto w-full;
+  @apply max-w-4xl mx-auto w-full;
 }
 .notion-asset-wrapper-full {
   @apply w-screen;
