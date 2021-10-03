@@ -68,7 +68,7 @@ const Layout = ({
         )}
         {children}
         {blockMap && (
-          <div className={frontMatter.type[0] === 'page' ? 'absolute top-0 overflow-hidden z-[-100] inset-x-0' : '-mt-4'}>
+          <div className={frontMatter.type[0] === 'Page' ? 'absolute top-0 overflow-hidden z-[-100] inset-x-0' : '-mt-4'}>
             <NotionRenderer
               recordMap={blockMap}
               components={{
