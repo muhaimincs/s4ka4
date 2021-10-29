@@ -32,11 +32,11 @@ const NavBar = () => {
 }
 
 const Header = ({ navBarTitle, fullWidth }) => {
-  const useSticky = !BLOG.autoCollapsedNavBar
+  // const useSticky = !BLOG.autoCollapsedNavBar
   const navRef = useRef(null)
   const sentinalRef = useRef([])
   const handler = ([entry]) => {
-    if (navRef && navRef.current && useSticky) {
+    if (navRef && navRef.current) {
       if (!entry.isIntersecting && entry !== undefined) {
         navRef.current.classList.add('sticky-nav-full')
       } else {
