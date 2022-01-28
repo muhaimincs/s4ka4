@@ -2,8 +2,8 @@
 import { useState, useRef, useEffect } from 'react'
 
 function NewsPost ({ title, url, urlToImage, expanded }) {
-  let [focusable, setFocusable] = useState(true)
-  let ref = useRef()
+  const [, setFocusable] = useState(true)
+  const ref = useRef()
 
   useEffect(() => {
     if (ref.current.offsetTop !== 0) {

@@ -5,9 +5,9 @@ import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 
 const News = ({ news, perChunk = 6 }) => {
   const ref = useRef()
-  const [expanded, setExpanded] = useState(false)
+  const [expanded] = useState(false)
   const [showCollapseButton, setShowCollapseButton] = useState(false)
-  const [transition, setTransition] = useState(false)
+  const [, setTransition] = useState(false)
   const { ref: inViewRef, inView } = useInView({ threshold: 0 })
   const initial = useRef(true)
   const result = news.reduce((resultArray, item, index) => {
