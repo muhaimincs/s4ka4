@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useLayoutEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import BLOG from '@/blog.config'
 import { useLocale } from '@/lib/locale'
 import logo from '@/public/logo.png'
+import logoDark from '@/public/logo-dark.png'
 
 const NavBar = () => {
   const locale = useLocale()
@@ -35,6 +36,7 @@ const NavBar = () => {
 
 const Header = ({ navBarTitle, fullWidth }) => {
   // const useSticky = !BLOG.autoCollapsedNavBar
+  const [mode, setMode] = useState('light')
   const navRef = useRef(null)
   const sentinalRef = useRef([])
   const handler = ([entry]) => {
@@ -56,6 +58,21 @@ const Header = ({ navBarTitle, fullWidth }) => {
     //   if (sentinalRef.current) obvserver.unobserve(sentinalRef.current)
     // }
   }, [sentinalRef])
+
+  useLayoutEffect(() => {
+    const listen = (e) => {
+      setMode(e.matches ? 'dark' : 'light')
+    }
+    window
+      .matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', listen)
+    return () => {
+      window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .removeEventListener('change', listen)
+    }
+  }, [])
+
   return (
     <>
       <div className="observer-element h-4 md:h-12" ref={sentinalRef}></div>
@@ -68,7 +85,7 @@ const Header = ({ navBarTitle, fullWidth }) => {
         <div className="flex items-center">
           <Link href="/">
             <a>
-              <Image src={logo} width={48} height={48} />
+              <Image src={mode === 'light' ? logo : logoDark} width={48} height={48} />
             </a>
           </Link>
           {navBarTitle
