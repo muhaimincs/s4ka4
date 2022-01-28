@@ -8,9 +8,9 @@
     "url": "https://github.com/craigary/nobelium.git"
   },
   "author": {
-    "name": "Craig Hart",
-    "email": "i@craigary.net",
-    "url": "http://craigary.net"
+    "name": "Abdul Muhaimin Bin Che Sohor",
+    "email": "muhaimin@mcstech.dev",
+    "url": "https://mcstech.dev"
   },
   "scripts": {
     "dev": "next dev",
@@ -22,28 +22,28 @@
   "dependencies": {
     "feed": "^4.2.2",
     "gitalk": "^1.7.2",
-    "next": "^12.0.1",
-    "notion-client": "^4.10.0",
-    "notion-utils": "^4.10.0",
-    "preact": "^10.5.15",
+    "next": "^12.0.9",
+    "notion-client": "^4.14.1",
+    "notion-utils": "^4.14.1",
+    "preact": "^10.6.5",
     "react": "^17.0.2",
     "react-cusdis": "^2.0.1",
     "react-dom": "^17.0.2",
-    "react-notion-x": "^4.11.0",
-    "use-ackee": "^3.0.0"
+    "react-notion-x": "^4.14.2",
+    "use-ackee": "^3.0.1"
   },
   "devDependencies": {
-    "autoprefixer": "^10.2.5",
-    "eslint": "^8.1.0",
-    "eslint-config-next": "^12.0.1",
+    "autoprefixer": "^10.4.2",
+    "eslint": "^8.7.0",
+    "eslint-config-next": "^12.0.9",
     "eslint-config-standard": "^16.0.2",
-    "eslint-plugin-import": "^2.23.0",
+    "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.23.2",
-    "next-sitemap": "^1.6.192",
-    "postcss": "^8.3.11",
-    "tailwindcss": "^2.2.19"
+    "next-sitemap": "^2.0.7",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.17"
   },
   "resolutions": {
     "axios": ">=0.21.1"

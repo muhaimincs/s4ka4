@@ -11,7 +11,7 @@ const Scripts = () => (
       />
     )}
     {BLOG.autoCollapsedNavBar === true && (
-      <Script strategy="lazyOnload">
+      <Script id="scrollTrigger" strategy="lazyOnload">
         {`var windowTop=0;
           function scrollTrigger(){
               let scrollS = window.scrollY;
@@ -32,7 +32,7 @@ const Scripts = () => (
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${BLOG.analytics.gaConfig.measurementId}`}
         />
-        <Script strategy="lazyOnload">
+        <Script id="gAnalytics" strategy="lazyOnload">
           {`window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
