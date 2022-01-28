@@ -5,7 +5,7 @@ import formatDate from '@/lib/formatDate'
 
 const BlogPost = ({ post }) => {
   return (
-    <article key={post.id} className="mb-6 md:mb-8 mx-auto flex-grow w-full transition-all max-w-3xl dark:bg-slate-800 rounded-md">
+    <article key={post.id} className="mb-6 md:mb-8 mx-auto flex-grow w-full transition-all max-w-3xl dark:bg-[#111] rounded-md">
         <header className="flex flex-col justify-between md:flex-row md:items-start">
           {post.urlToImage && (
             <div className='flex-shrink-0 flex items-center justify-center overflow-hidden w-48 rounded-tl rounded-br border-0'>
