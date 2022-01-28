@@ -21,7 +21,6 @@ const Layout = ({
 }) => {
   const locale = useLocale()
   const router = useRouter()
-  console.log(frontMatter)
   return (
     <Container
       layout="blog"
@@ -37,21 +36,22 @@ const Layout = ({
             <h1 className="font-bold text-3xl text-black dark:text-white">
               {frontMatter.title}
             </h1>
-            <nav className="flex mt-7 items-start text-gray-500 dark:text-gray-400">
-              <div className="flex mb-4">
-                <a href='#' className="flex">
-                  <Image
-                    alt={frontMatter.Author}
-                    width={24}
-                    height={24}
-                    src={`https://gravatar.com/avatar/${emailHash}`}
-                    className="rounded-full"
-                  />
+            <nav className="flex mt-4 items-center text-gray-500 dark:text-gray-400">
+              <div className="flex items-center">
+                <a href='#' className="flex items-center">
+                  <div className='rounded-full overflow-hidden w-10 h-10'>
+                    <Image
+                      alt={frontMatter.Author}
+                      width={48}
+                      height={48}
+                      src={require(`../svg/${frontMatter.Author}.svg`).default}
+                    />
+                  </div>
                   <p className="ml-2 md:block">{frontMatter.Author}</p>
                 </a>
                 <span className="block">&nbsp;/&nbsp;</span>
               </div>
-              <div className="mr-2 mb-4 md:ml-0">
+              <div className="mr-2 md:ml-0">
                 {formatDate(
                   frontMatter?.date?.start_date || frontMatter.createdTime,
                   BLOG.lang
