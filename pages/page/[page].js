@@ -23,11 +23,15 @@ export async function getStaticProps (context) {
   )
   const totalPosts = posts.length
   const showNext = page * BLOG.postsPerPage < totalPosts
+  const url = `${BLOG.news.url}top-headlines?sortBy=popularity&apiKey=${BLOG.news.apiKey}&country=my`
+  const reqs = await fetch(url)
+  const { articles } = await reqs.json()
   return {
     props: {
       page, // Current Page
       postsToShow,
-      showNext
+      showNext,
+      articles
     },
     revalidate: 1
   }

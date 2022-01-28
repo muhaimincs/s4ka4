@@ -12,6 +12,7 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
     type: 'website',
     ...customMeta
   }
+
   return (
     <div>
       <Head>
@@ -71,11 +72,7 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
           navBarTitle={layout === 'blog' ? meta.title : null}
           fullWidth={fullWidth}
         />
-        <main
-          className={`m-auto flex-grow w-full transition-all ${
-            !fullWidth ? 'max-w-2xl px-4' : ''
-          }`}
-        >
+        <main>
           {children}
         </main>
         <Footer fullWidth={fullWidth} />

@@ -1,11 +1,15 @@
 import { getAllPosts, getAllTagsFromPosts } from '@/lib/notion'
 import SearchLayout from '@/layouts/search'
+import BLOG from '@/blog.config'
 
 export default function Tag ({ tags, posts, currentTag }) {
   return <SearchLayout tags={tags} posts={posts} currentTag={currentTag} />
 }
 
 export async function getStaticProps ({ params }) {
+  const url = `${BLOG.news.url}top-headlines?sortBy=popularity&apiKey=${BLOG.news.apiKey}&country=my`
+  const reqs = await fetch(url)
+  const { articles } = await reqs.json()
   const currentTag = params.tag
   const posts = await getAllPosts({ includePages: false })
   const tags = getAllTagsFromPosts(posts)
@@ -16,7 +20,8 @@ export async function getStaticProps ({ params }) {
     props: {
       tags,
       posts: filteredPosts,
-      currentTag
+      currentTag,
+      articles
     },
     revalidate: 1
   }

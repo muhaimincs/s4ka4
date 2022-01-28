@@ -24,6 +24,9 @@ export async function getStaticPaths () {
 }
 
 export async function getStaticProps ({ params: { slug } }) {
+  const url = `${BLOG.news.url}top-headlines?sortBy=popularity&apiKey=${BLOG.news.apiKey}&country=my`
+  const reqs = await fetch(url)
+  const { articles } = await reqs.json()
   const posts = await getAllPosts({ includePages: true })
   const post = posts.find(t => t.slug === slug)
   const blockMap = await getPostBlocks(post.id)
@@ -34,7 +37,7 @@ export async function getStaticProps ({ params: { slug } }) {
     .toLowerCase()
 
   return {
-    props: { post, blockMap, emailHash },
+    props: { post, blockMap, emailHash, articles },
     revalidate: 1
   }
 }

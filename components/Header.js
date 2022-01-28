@@ -1,6 +1,9 @@
 import { useEffect, useRef, useLayoutEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import my from 'date-fns/locale/ms'
+import { formatInTimeZone } from 'date-fns-tz'
+
 import BLOG from '@/blog.config'
 import { useLocale } from '@/lib/locale'
 import logo from '@/public/logo.png'
@@ -75,7 +78,9 @@ const Header = ({ navBarTitle, fullWidth }) => {
 
   return (
     <>
-      <div className="observer-element h-4 md:h-12" ref={sentinalRef}></div>
+      <div className="observer-element h-4 md:h-12 text-center text-xs font-semibold text-slate-500 pt-4 " ref={sentinalRef}>
+        {formatInTimeZone(new Date(), 'Asia/Kuala_Lumpur', "EEEE d LLL yyyy '| Waktu Semenanjung 🇲🇾:' hh:mm:ss", { locale: my })}
+      </div>
       <div
         className={`sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center mb-2 md:mb-12 py-8 bg-opacity-60 ${!fullWidth ? 'max-w-3xl px-4' : 'px-4 md:px-24'
           }`}
