@@ -30,7 +30,7 @@ const Layout = ({
       type={frontMatter.type[0]}
       fullWidth={fullWidth}
     >
-      <article className="overflow-x-hidden">
+      <article className="overflow-x-hidden max-w-3xl mx-auto">
         {frontMatter.type[0] !== 'Page' && (
           <>
             <h1 className="font-bold text-3xl text-black dark:text-white">
