@@ -79,7 +79,7 @@ const News = ({ news, perChunk = 6 }) => {
             </ul>
           ))}
         </div>
-        <div className='inset-x-0 bottom-0 flex justify-center bg-gradient-to-t from-white pt-32 pb-8 pointer-events-none dark:from-slate-900 absolute max-w-3xl mx-auto' />
+        <div className='inset-x-0 bottom-0 flex justify-center bg-gradient-to-t from-white pt-32 pb-8 pointer-events-none dark:from-[#111] absolute max-w-3xl mx-auto' />
       </div>
     </section>
   )

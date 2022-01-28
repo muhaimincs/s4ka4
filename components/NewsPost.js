@@ -13,7 +13,7 @@ function NewsPost ({ title, url, urlToImage, expanded }) {
 
   return (
     <li ref={ref} className="text-sm leading-6">
-      <figure className="relative flex flex-col-reverse bg-slate-50 rounded-lg p-6 dark:bg-slate-800 dark:highlight-white/5">
+      <figure className="relative flex flex-col-reverse rounded-lg p-3 md:p-6 md:dark:bg-slate-800 dark:highlight-white/5">
         <blockquote className="mt-6 text-slate-700 dark:text-slate-300">
           {typeof title === 'string' ? <p>{title}</p> : title}
         </blockquote>

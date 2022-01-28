@@ -30,7 +30,7 @@ const Layout = ({
       type={frontMatter.type[0]}
       fullWidth={fullWidth}
     >
-      <article className="overflow-x-hidden max-w-3xl mx-auto">
+      <article className="overflow-x-hidden max-w-3xl mx-auto px-4">
         {frontMatter.type[0] !== 'Page' && (
           <>
             <h1 className="font-bold text-3xl text-black dark:text-white">
@@ -83,7 +83,7 @@ const Layout = ({
             />
           </div>
         )}
-        <div className={`flex justify-between font-medium text-gray-500 dark:text-gray-400${frontMatter.type[0] === 'Page' ? ' w-full mx-auto px-4 md:px-24' : ''}`}>
+        <div className={`flex justify-between font-medium max-w-3xl mx-auto text-gray-500 dark:text-gray-400${frontMatter.type[0] === 'Page' ? ' w-full mx-auto px-4 md:px-24' : ''}`}>
           <a>
             <button
               onClick={() => router.push(BLOG.path || '/')}
