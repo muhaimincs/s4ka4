@@ -85,10 +85,35 @@ body::-webkit-scrollbar-thumb {
   @apply border-b border-opacity-50 border-gray-200 dark:border-gray-600 dark:border-opacity-50;
 }
 
-.header-name {
+.header-description {
   display: none;
   opacity: 0;
   overflow: hidden;
+}
+
+.brand {
+  @apply my-5;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0, 1);
+}
+
+.sticky-nav-full .brand {
+  @apply my-1;
+}
+
+.header-name {
+  @apply hidden;
+}
+
+.header-description {
+  display: block;
+  opacity: 0;
+  @apply line-clamp-1 transition;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0, 1);
+}
+
+.sticky-nav-full .header-description {
+  opacity: 1;
+  @apply dark:text-gray-300 text-gray-600;
 }
 
 .sticky-nav-full .nav {
@@ -122,14 +147,18 @@ nav {
   .sticky-nav-full {
     @apply max-w-full border-b border-opacity-50 border-gray-200 dark:border-gray-600 dark:border-opacity-50;
   }
+  .header-description {
+    @apply hidden transition-opacity;
+  }
   .header-name {
-    display: block;
-    opacity: 0;
+    @apply hidden md:block opacity-100 text-gray-600 text-center;
     transition: all 0.5s cubic-bezier(0.4, 0, 0, 1);
   }
   .sticky-nav-full .header-name {
-    opacity: 1;
-    @apply dark:text-gray-300 text-gray-600;
+    @apply dark:text-gray-300 text-gray-600 opacity-0 hidden;
+  }
+  .sticky-nav-full .header-description {
+    @apply dark:text-gray-300 text-gray-600 opacity-100 block;
   }
 }
 

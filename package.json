@@ -20,10 +20,14 @@
     "postbuild": "next-sitemap --config next-sitemap.config.js"
   },
   "dependencies": {
+    "@headlessui/react": "^1.4.3",
+    "@tailwindcss/line-clamp": "^0.3.1",
+    "@tailwindcss/typography": "^0.5.1",
     "date-fns": "^2.28.0",
     "date-fns-tz": "^1.2.2",
     "feed": "^4.2.2",
     "gitalk": "^1.7.2",
+    "magic-sdk": "^8.0.1",
     "next": "^12.0.9",
     "notion-client": "^4.14.1",
     "notion-utils": "^4.14.1",

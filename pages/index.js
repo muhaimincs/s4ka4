@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import { subMonths } from 'date-fns'
 import Container from '@/components/Container'
 import BlogPost from '@/components/BlogPost'
 import News from '@/components/News'
@@ -12,6 +13,14 @@ export async function getStaticProps () {
   const { articles: news } = await reqs.json()
   const allPosts = await getAllPosts({ includePages: true })
   const postsToShow = allPosts.slice(0, BLOG.postsPerPage)
+  const lastTwoPosts = allPosts
+    .filter(post => {
+      const dt = new Date(post?.date?.start_date)
+      const curr = subMonths(new Date(), 2)
+      console.log(dt.getMonth(), 'hhh', curr.getMonth())
+      return dt.getMonth() === curr.getMonth()
+    })
+    .slice(-2)
   const totalPosts = allPosts.length
   const showNext = totalPosts > BLOG.postsPerPage
   return {
@@ -19,15 +28,16 @@ export async function getStaticProps () {
       page: 1, // current page is 1
       news,
       postsToShow,
-      showNext
+      showNext,
+      lastTwoPosts
     },
     revalidate: 1
   }
 }
 
-const blog = ({ postsToShow, page, showNext, news }) => {
+const blog = ({ postsToShow, page, showNext, news, lastTwoPosts }) => {
   return (
-    <Container title={BLOG.title} description={BLOG.description}>
+    <Container title={BLOG.title} description={BLOG.description} lastTwoPosts={lastTwoPosts}>
       {postsToShow.map((post, i) => {
         return (
           <Fragment key={post.id}>
