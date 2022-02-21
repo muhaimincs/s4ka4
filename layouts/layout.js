@@ -30,7 +30,7 @@ const Layout = ({
   useEffect(() => {
     async function updateOnline () {
       const date = format(new Date(), 'MM/dd/yyyy')
-      await fetch('/api/vote', {
+      await fetch('/api/online', {
         body: JSON.stringify({
           id: `${frontMatter.id}-${date}`,
           slug: frontMatter.slug
