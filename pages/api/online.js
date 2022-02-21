@@ -14,7 +14,7 @@ export default async function online (req, res) {
     const entry = JSON.parse((await redis.hget('online', id)) || 'null')
     const updated = {
       ...entry,
-      score: entry.score + 1,
+      view: entry.view + 1,
       ip
     }
 
