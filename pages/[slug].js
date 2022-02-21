@@ -1,7 +1,10 @@
+import { createHash } from 'crypto'
+import { format } from 'date-fns'
+
 import Layout from '@/layouts/layout'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
+import redis from '@/lib/redis'
 import BLOG from '@/blog.config'
-import { createHash } from 'crypto'
 
 const BlogPost = ({ post, blockMap, emailHash }) => {
   if (!post) return null
@@ -24,6 +27,11 @@ export async function getStaticPaths () {
 }
 
 export async function getStaticProps ({ params: { slug } }) {
+  const date = format(new Date(), 'MM/dd/yyyy')
+  const currOnline = await redis.hget('online', `${date}${slug}`) || 0
+  if (!currOnline) {
+    await redis.hset('online', `${date}${slug}`, 1)
+  }
   const url = `${BLOG.news.url}top-headlines?sortBy=popularity&apiKey=${BLOG.news.apiKey}&country=my`
   const reqs = await fetch(url)
   const { articles } = await reqs.json()
