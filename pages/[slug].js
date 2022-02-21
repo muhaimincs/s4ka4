@@ -28,10 +28,7 @@ export async function getStaticPaths () {
 
 export async function getStaticProps ({ params: { slug } }) {
   const date = format(new Date(), 'MM/dd/yyyy')
-  const currOnline = await redis.hget('online', `${date}${slug}`) || 0
-  if (!currOnline) {
-    await redis.hset('online', `${date}${slug}`, 1)
-  }
+  const currOnline = await redis.hget('online', `${date}${slug}`)
   const url = `${BLOG.news.url}top-headlines?sortBy=popularity&apiKey=${BLOG.news.apiKey}&country=my`
   const reqs = await fetch(url)
   const { articles } = await reqs.json()
@@ -45,7 +42,7 @@ export async function getStaticProps ({ params: { slug } }) {
     .toLowerCase()
 
   return {
-    props: { post, blockMap, emailHash, articles },
+    props: { post, blockMap, emailHash, articles, currOnline },
     revalidate: 1
   }
 }

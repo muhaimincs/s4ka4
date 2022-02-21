@@ -1,4 +1,7 @@
+import { useEffect } from 'react'
 import Image from 'next/image'
+import { useOnlineState } from 'beautiful-react-hooks'
+
 import Container from '@/components/Container'
 import TagItem from '@/components/TagItem'
 import { NotionRenderer, Equation, Code, CollectionRow, Collection } from 'react-notion-x'
@@ -21,6 +24,27 @@ const Layout = ({
 }) => {
   const locale = useLocale()
   const router = useRouter()
+  const isOnline = useOnlineState()
+
+  useEffect(() => {
+    async function updateOnline () {
+      await fetch('/api/vote', {
+        body: JSON.stringify({
+          id: frontMatter.id,
+          slug: frontMatter.slug
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'POST'
+      })
+    }
+
+    if (isOnline) {
+      updateOnline()
+    }
+  }, [isOnline])
+
   return (
     <Container
       layout="blog"
