@@ -7,7 +7,7 @@ function NewsPost ({ title, url, urlToImage, expanded, publishedAt, source, ...r
 
   return (
     <div className="snap-center shrink-0 first:pl-8 last:pr-8">
-      <figure className="w-56 h-40 relative flex flex-col rounded-lg md:p-1 bg-gray-50 md:dark:bg-slate-800 dark:bg-white/5">
+      <figure className="w-56 h-40 relative flex flex-col rounded-lg bg-gray-50 md:dark:bg-slate-800 dark:bg-white/5">
         <span className={`text-slate-300 mx-3 mt-2 z-10 ${urlToImage ? 'absolute inset-0' : ''}`}>{source.name}</span>
         {urlToImage
           ? (
