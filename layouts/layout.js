@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import Image from 'next/image'
 import { useOnlineState } from 'beautiful-react-hooks'
+import { format } from 'date-fns'
 
 import Container from '@/components/Container'
 import TagItem from '@/components/TagItem'
@@ -28,9 +29,10 @@ const Layout = ({
 
   useEffect(() => {
     async function updateOnline () {
+      const date = format(new Date(), 'MM/dd/yyyy')
       await fetch('/api/vote', {
         body: JSON.stringify({
-          id: frontMatter.id,
+          id: `${frontMatter.id}-${date}`,
           slug: frontMatter.slug
         }),
         headers: {

@@ -1,9 +1,7 @@
 import { createHash } from 'crypto'
-import { format } from 'date-fns'
 
 import Layout from '@/layouts/layout'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
-import redis from '@/lib/redis'
 import BLOG from '@/blog.config'
 
 const BlogPost = ({ post, blockMap, emailHash }) => {
@@ -27,8 +25,8 @@ export async function getStaticPaths () {
 }
 
 export async function getStaticProps ({ params: { slug } }) {
-  const date = format(new Date(), 'MM/dd/yyyy')
-  const currOnline = await redis.hget('online', `${date}${slug}`)
+  // const date = format(new Date(), 'MM/dd/yyyy')
+  // const currOnline = await redis.hget('online', `${date}${slug}`)
   const url = `${BLOG.news.url}top-headlines?sortBy=popularity&apiKey=${BLOG.news.apiKey}&country=my`
   const reqs = await fetch(url)
   const { articles } = await reqs.json()
@@ -42,7 +40,7 @@ export async function getStaticProps ({ params: { slug } }) {
     .toLowerCase()
 
   return {
-    props: { post, blockMap, emailHash, articles, currOnline },
+    props: { post, blockMap, emailHash, articles },
     revalidate: 1
   }
 }
