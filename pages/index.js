@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Fragment } from 'react'
 import { subMonths } from 'date-fns'
 import Container from '@/components/Container'
@@ -12,12 +13,15 @@ export async function getStaticProps () {
   const reqs = await fetch(url)
   const { articles: news } = await reqs.json()
   const allPosts = await getAllPosts({ includePages: true })
-  const postsToShow = allPosts.slice(0, BLOG.postsPerPage)
+  const postsToShow = allPosts
+    .filter(p => p.type[0] === 'Post')
+    .slice(0, BLOG.postsPerPage)
+  const wejangans = allPosts.filter(p => p.type[0] === 'Wejangan')
+  const wejangan = wejangans[Math.floor(Math.random() * wejangans.length)]
   const lastTwoPosts = allPosts
     .filter(post => {
       const dt = new Date(post?.date?.start_date)
       const curr = subMonths(new Date(), 2)
-      console.log(dt.getMonth(), 'hhh', curr.getMonth())
       return dt.getMonth() === curr.getMonth()
     })
     .slice(-2)
@@ -29,19 +33,61 @@ export async function getStaticProps () {
       news,
       postsToShow,
       showNext,
-      lastTwoPosts
+      lastTwoPosts,
+      wejangan
     },
     revalidate: 1
   }
 }
 
-const blog = ({ postsToShow, page, showNext, news, lastTwoPosts }) => {
+const blog = ({ postsToShow, page, showNext, news, lastTwoPosts, wejangan }) => {
   return (
     <Container title={BLOG.title} description={BLOG.description} lastTwoPosts={lastTwoPosts}>
       {postsToShow.map((post, i) => {
         return (
           <Fragment key={post.id}>
             {i === 3 && news.length && <News news={news} />}
+            {i === 7 && (
+              <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+                <div className="relative py-24 px-8 bg-indigo-500 rounded-xl shadow-2xl overflow-hidden lg:px-16 lg:grid lg:grid-cols-2 lg:gap-x-8">
+                  <div className="absolute inset-0 opacity-50 filter saturate-0 mix-blend-multiply">
+                    <img
+                      src="https://images.unsplash.com/photo-1601381718415-a05fb0a261f3?ixid=MXwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8ODl8fHxlbnwwfHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1216&q=80"
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="relative lg:col-span-1">
+                    <svg
+                      className="absolute top-0 left-0 transform -translate-x-8 -translate-y-24 h-36 w-36 text-indigo-200 opacity-50"
+                      stroke="currentColor"
+                      fill="none"
+                      viewBox="0 0 144 144"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeWidth={2}
+                        d="M41.485 15C17.753 31.753 1 59.208 1 89.455c0 24.664 14.891 39.09 32.109 39.09 16.287 0 28.386-13.03 28.386-28.387 0-15.356-10.703-26.524-24.663-26.524-2.792 0-6.515.465-7.446.93 2.327-15.821 17.218-34.435 32.11-43.742L41.485 15zm80.04 0c-23.268 16.753-40.02 44.208-40.02 74.455 0 24.664 14.891 39.09 32.109 39.09 15.822 0 28.386-13.03 28.386-28.387 0-15.356-11.168-26.524-25.129-26.524-2.792 0-6.049.465-6.98.93 2.327-15.821 16.753-34.435 31.644-43.742L121.525 15z"
+                      />
+                    </svg>
+                    <p className="text-3xl text-gray-100 font-semibold uppercase tracking-wide">
+                      Siklus Mutiara
+                    </p>
+                    <blockquote className="mt-6 text-white">
+                      <p className="text-xl font-medium sm:text-2xl">
+                        {wejangan.summary}
+                      </p>
+                      <footer className="mt-6">
+                        <p className="flex flex-col font-medium">
+                          <span>YMM</span>
+                          <span>Kehadirannya dirindui</span>
+                        </p>
+                      </footer>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
+            )}
             <BlogPost post={post} />
           </Fragment>
         )
