@@ -1,5 +1,5 @@
 const BLOG = {
-  title: 'His Trees',
+  title: 'Pesan',
   author: 'BSR',
   email: 'benz.sohor@pm.me',
   link: 'https://pesan.life',

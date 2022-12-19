@@ -38,19 +38,33 @@ export async function getStaticProps () {
         .map(row => `${BLOG.path}/${row.slug}`)
     }
     // const reqs = await fetch(`https://www.bing.com/indexnow?url=https://${BLOG.path}/${post.slug}&key=${BLOG.indexNowBing}`)
-    const reqs = await fetch('https://www.bing.com/indexnow', {
+    const bings = fetch('https://www.bing.com/indexnow', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     })
 
-    if (reqs.status !== 200) {
-      const res = await reqs.json()
-      console.log('Failed to publish to IndexNow for Bing', res)
-    } else {
-      const res = await reqs.json()
-      console.log('respond', res)
-    }
+    const indexnow = fetch('https://api.indexnow.org/indexnow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+
+    const seznam = fetch('https://search.seznam.cz/indexnow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+
+    const yandex = fetch('https://yandex.com/indexnow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+
+    await Promise.all([bings, indexnow, seznam, yandex])
+      .then((res) => console.log('respond', JSON.stringify(res)))
+      .catch((reason) => console.log('Failed to publish', JSON.stringify(reason)))
   }
 
   return {
