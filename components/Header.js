@@ -16,7 +16,7 @@ const NavBar = () => {
     { id: 3, name: locale.NAV.SEARCH, to: '/search', show: true }
   ]
   return (
-    <ul className="flex flex-row space-x-3 mr-3 items-center">
+    <ul className="flex flex-row space-x-3 mr-3 items-center flex-none">
       {links.map(
         link =>
           link.show && (
@@ -86,7 +86,7 @@ const Header = ({ navBarTitle, fullWidth, lastTwoPosts }) => {
       ref={navRef}
     >
       <div className="flex flex-row md:space-y-2 items-center w-full brand">
-        <Link href="/" passHref>
+        <Link href="/" passHref className='grow'>
           <Image src={mode === 'light' ? logo : logoDark} width={224} alt={BLOG.title} />
         </Link>
         <NavBar />
@@ -96,7 +96,7 @@ const Header = ({ navBarTitle, fullWidth, lastTwoPosts }) => {
             {BLOG.description}
           </p> */}
       {navBarTitle && (
-        <div className={`sticky-nav mx-auto top-auto bottom-0 inset-x-0 h-10 bg-opacity-60 ${!fullWidth ? 'max-w-3xl' : 'md:px-24'}`}>
+        <div className={`sticky-nav mx-auto top-[auto!important] bottom-0 inset-x-0 h-10 bg-opacity-60 ${!fullWidth ? 'max-w-3xl' : 'md:px-24'}`}>
           <p className="font-medium text-day dark:text-night header-description">
             {navBarTitle}
           </p>
