@@ -2,7 +2,7 @@ const BLOG = {
   title: 'His Trees',
   author: 'BSR',
   email: 'benz.sohor@pm.me',
-  link: 'https://histre.es',
+  link: 'https://pesan.life',
   description: 'Your story heard, His Story Revealed',
   lang: 'ms-MY', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
   appearance: 'auto', // ['light', 'dark', 'auto'],
@@ -59,7 +59,8 @@ const BLOG = {
     url: 'https://newsapi.org/v2/',
     apiKey: process.env.NEWSAPI
   },
-  isProd: process.env.VERCEL_ENV === 'production' // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
+  isProd: process.env.VERCEL_ENV === 'production', // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
+  indexNowBing: '25889cc6bfde489e95e1a8f119453126'
 }
 // export default BLOG
 module.exports = BLOG

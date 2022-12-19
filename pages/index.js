@@ -27,6 +27,32 @@ export async function getStaticProps () {
     .slice(-2)
   const totalPosts = allPosts.length
   const showNext = totalPosts > BLOG.postsPerPage
+
+  if (BLOG.isProd) {
+    const payload = {
+      host: BLOG.path,
+      key: BLOG.indexNowBing,
+      keyLocation: `https://${BLOG.path}/${BLOG.indexNowBing}.txt`,
+      urlList: allPosts
+        .filter(p => p.type[0] !== 'Wejangan')
+        .map(row => `${BLOG.path}/${row.slug}`)
+    }
+    // const reqs = await fetch(`https://www.bing.com/indexnow?url=https://${BLOG.path}/${post.slug}&key=${BLOG.indexNowBing}`)
+    const reqs = await fetch('https://www.bing.com/indexnow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+
+    if (reqs.status !== 200) {
+      const res = await reqs.json()
+      console.log('Failed to publish to IndexNow for Bing', res)
+    } else {
+      const res = await reqs.json()
+      console.log('respond', res)
+    }
+  }
+
   return {
     props: {
       page: 1, // current page is 1

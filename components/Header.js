@@ -26,7 +26,7 @@ const NavBar = () => {
               className="block text-black dark:text-gray-50 nav"
             >
               <Link href={link.to}>
-                <a>{link.name}</a>
+                {link.name}
               </Link>
             </li>
           )
@@ -78,66 +78,66 @@ const Header = ({ navBarTitle, fullWidth, lastTwoPosts }) => {
     }
   }, [])
 
-  return (
-    <>
-      <div className="observer-element h-12 flex flex-row" ref={sentinalRef}>
-        <span className="text-center text-xs font-semibold text-slate-500 pt-4 max-w-xs mx-auto">
-          {formatInTimeZone(new Date(), 'Asia/Kuala_Lumpur', "EEEE d LLL yyyy '| Waktu Semenanjung 🇲🇾:' hh:mm:ss", { locale: my })}
-        </span>
-        <div className="hidden md:block">
-          <NavBar />
+  return <>
+    <div className="observer-element h-12 flex flex-row" ref={sentinalRef}>
+      <span className="text-center text-xs font-semibold text-slate-500 pt-4 max-w-xs mx-auto">
+        {formatInTimeZone(new Date(), 'Asia/Kuala_Lumpur', "EEEE d LLL yyyy '| Waktu Semenanjung 🇲🇾:' hh:mm:ss", { locale: my })}
+      </span>
+      <div className="hidden md:block">
+        <NavBar />
+      </div>
+    </div>
+    <div
+      className={
+        `sticky-nav mx-auto w-full flex flex-row justify-around items-center md:mb-12 bg-opacity-60 ${!fullWidth ? 'max-w-7xl' : 'md:px-24'}`}
+      id="sticky-nav"
+      ref={navRef}
+    >
+        <div className="hidden md:block md:max-w-[15rem] px-3">
+          {lastTwoPosts && lastTwoPosts.length && (
+            (<Link
+              href={`/${lastTwoPosts[0].slug}`}
+              className="text-slate-300 line-clamp-3 text-xs">
+
+              <a className="dark:bg-slate-500 text-slate-50 mr-1 px-2">{lastTwoPosts[0].tags[0]}</a>
+              {lastTwoPosts[0].summary}
+
+            </Link>)
+          )}
         </div>
-      </div>
-      <div
-        className={
-          `sticky-nav mx-auto w-full flex flex-row justify-around items-center md:mb-12 bg-opacity-60 ${!fullWidth ? 'max-w-7xl' : 'md:px-24'}`}
-        id="sticky-nav"
-        ref={navRef}
-      >
-          <div className="hidden md:block md:max-w-[15rem] px-3">
-            {lastTwoPosts && lastTwoPosts.length && (
-              <Link href={`/${lastTwoPosts[0].slug}`}>
-                <a className="text-slate-300 line-clamp-3 text-xs">
-                  <span className="dark:bg-slate-500 text-slate-50 mr-1 px-2">{lastTwoPosts[0].tags[0]}</span>
-                  {lastTwoPosts[0].summary}
-                </a>
-              </Link>
-            )}
-          </div>
-          <div className="flex flex-row md:flex-col md:space-y-2 items-center justify-between w-full px-3 brand md:max-w-md">
-            <div className="flex items-center md:flex-col space-x-3 md:space-x-0 md:space-y-3">
-              <Link href="/">
-                <a>
-                  <div className="overflow-hidden h-12">
-                    <Image src={mode === 'light' ? logo : logoDark} width={48} height={48} />
-                  </div>
-                </a>
-              </Link>
-              <p className="header-name">
-                {BLOG.title}
+        <div className="flex flex-row md:flex-col md:space-y-2 items-center justify-between w-full px-3 brand md:max-w-md">
+          <div className="flex items-center md:flex-col space-x-3 md:space-x-0 md:space-y-3">
+            <Link href="/">
+
+              <a className="overflow-hidden h-12">
+                <Image src={mode === 'light' ? logo : logoDark} width={48} height={48} />
+              </a>
+
+            </Link>
+            <p className="header-name">
+              {BLOG.title}
+            </p>
+            {navBarTitle &&
+              (
+              <p className="font-medium text-day dark:text-night header-description">
+                {navBarTitle}
               </p>
-              {navBarTitle &&
-                (
-                <p className="font-medium text-day dark:text-night header-description">
-                  {navBarTitle}
-                </p>
-                )}
-            </div>
-            <div className="block md:hidden">
-              <NavBar />
-            </div>
+              )}
           </div>
-          <div className="hidden md:block md:max-w-[15rem] px-3">
-            {lastTwoPosts && lastTwoPosts.length && (
-              <p className="text-slate-300 line-clamp-3 text-xs">
-                <span className="dark:bg-slate-500 text-slate-50 mr-1 px-2">{lastTwoPosts[1].tags[0]}</span>
-                {lastTwoPosts[1].summary}
-              </p>
-            )}
+          <div className="block md:hidden">
+            <NavBar />
           </div>
-      </div>
-    </>
-  )
+        </div>
+        <div className="hidden md:block md:max-w-[15rem] px-3">
+          {lastTwoPosts && lastTwoPosts.length && (
+            <p className="text-slate-300 line-clamp-3 text-xs">
+              <span className="dark:bg-slate-500 text-slate-50 mr-1 px-2">{lastTwoPosts[1].tags[0]}</span>
+              {lastTwoPosts[1].summary}
+            </p>
+          )}
+        </div>
+    </div>
+  </>
 }
 
 export default Header
