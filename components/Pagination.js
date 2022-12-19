@@ -13,26 +13,15 @@ const Pagination = ({ page, showNext }) => {
             ? `${BLOG.path || '/'}`
             : `/page/${currentPage - 1}`
         }
+        className={`${
+          currentPage === 1 ? 'invisible' : 'block'
+        } cursor-pointer`}
+        rel="prev"
       >
-        <a
-          rel="prev"
-          className={`${
-            currentPage === 1 ? 'invisible' : 'block'
-          } cursor-pointer`}
-        >
-          ← {locale.PAGINATION.PREV}
-        </a>
-
+        ← {locale.PAGINATION.PREV}
       </Link>
-      <Link href={`/page/${currentPage + 1}`}>
-
-        <a
-          rel="next"
-          className={`${+showNext ? 'block' : 'invisible'} cursor-pointer`}
-        >
-          {locale.PAGINATION.NEXT} →
-        </a>
-
+      <Link href={`/page/${currentPage + 1}`} className={`${+showNext ? 'block' : 'invisible'} cursor-pointer`} rel="next">
+        {locale.PAGINATION.NEXT} →
       </Link>
     </div>
   )

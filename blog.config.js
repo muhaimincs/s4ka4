@@ -3,7 +3,7 @@ const BLOG = {
   author: 'BSR',
   email: 'benz.sohor@pm.me',
   link: 'https://pesan.life',
-  description: 'Your story heard, His Story Revealed',
+  description: 'Suatu pesan untuk diri sendiri malah untuk semua juga',
   lang: 'ms-MY', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
   appearance: 'auto', // ['light', 'dark', 'auto'],
   font: 'sans-serif', // ['sans-serif', 'serif']
