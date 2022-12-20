@@ -10,7 +10,7 @@ import logoDark from '@/svg/pesan-dark.svg'
 const NavBar = () => {
   const locale = useLocale()
   const links = [
-    { id: 0, name: 'Renungan', to: '/tag/renungan', show: true },
+    { id: 0, name: 'Renungan', to: '/tag/Renungan', show: true },
     { id: 1, name: 'Sabath', to: '/tag/sabath', show: true },
     { id: 2, name: locale.NAV.RSS, to: '/feed', show: true },
     { id: 3, name: locale.NAV.SEARCH, to: '/search', show: true }
