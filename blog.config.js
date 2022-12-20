@@ -20,8 +20,8 @@ const BLOG = {
   socialLink: '',
   seo: {
     keywords: ['Renungan'],
-    googleSiteVerification: '', // Remove the value or replace it with your own google site verification code
-    yandexSiteVerification: process.env.NEXT_PUBLIC_YANDEX // Remove the value or replace it with your own yandex site verification code
+    googleSiteVerification: '',
+    yandexSiteVerification: process.env.NEXT_PUBLIC_YANDEX
   },
   notionPageId: process.env.NOTION_PAGE_ID, // DO NOT CHANGE THIS！！！
   notionAccessToken: process.env.NOTION_ACCESS_TOKEN, // Useful if you prefer not to make your database public
