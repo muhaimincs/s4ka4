@@ -94,7 +94,7 @@ export default function Document () {
           <meta name="theme-color" content={BLOG.appearance === 'dark' ? BLOG.darkBackground : BLOG.lightBackground} />
             )
         }
-        <meta name="yandex-verification" content={process.env.NEXT_PUBLIC_YANDEX} />
+        <meta name="yandex-verification" content={BLOG.yandexSiteVerification} />
       </Head>
       <body className="bg-day dark:bg-night">
         <Main />

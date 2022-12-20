@@ -59,7 +59,7 @@ const Container = ({ children, layout, fullWidth, ...customMeta }) => {
               property="article:published_time"
               content={meta.date || meta.createdTime}
             />
-            <meta property="article:author" content={BLOG.author} />
+            <meta property="article:author" content={meta.author} />
           </>
         )}
       </Head>

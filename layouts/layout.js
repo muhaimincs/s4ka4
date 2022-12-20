@@ -54,6 +54,7 @@ const Layout = ({
       description={frontMatter.summary}
       date={new Date(frontMatter.createdTime).toISOString()}
       type={frontMatter.type[0]}
+      author={frontMatter.Author}
       fullWidth={fullWidth}
     >
       <article className="overflow-x-hidden max-w-3xl mx-auto px-4">
