@@ -114,7 +114,7 @@ export default function Document () {
       <body className="bg-day dark:bg-night">
         <Main />
         <NextScript />
-        <noscript><div><img src="https://mc.yandex.ru/watch/91773769" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+        <noscript><div><img src="https://mc.yandex.ru/watch/91773769" className='absolute left-[-9999px]' alt="" /></div></noscript>
       </body>
     </Html>
   )
